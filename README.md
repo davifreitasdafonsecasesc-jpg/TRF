@@ -1,3 +1,4 @@
+
 import customtkinter
 
 customtkinter.set_appearance_mode("dark")
@@ -5,114 +6,127 @@ customtkinter.set_default_color_theme("blue")
 
 janela = customtkinter.CTk()
 janela.geometry("600x600")
-janela.title("SE Sistemas e Tecnologia")
-janela.configure(fg_color="#050B16")
+janela.title("Neuro+")
+janela.configure(fg_color="#071426")
 
-logo = customtkinter.CTkLabel(
-    janela,
-    text="S E",
-    font=("Arial", 85, "bold"),
-    text_color="#00BFFF"
-)
-logo.pack(pady=(30, 0))
-
+# Título
 titulo = customtkinter.CTkLabel(
     janela,
-    text="SISTEMAS E",
-    font=("Arial", 32, "bold"),
-    text_color="white"
+    text="🧠 Neuro+",
+    font=("Arial", 40, "bold"),
+    text_color="#00BFFF"
 )
-titulo.pack(pady=0)
+titulo.pack(pady=(25, 5))
 
 subtitulo = customtkinter.CTkLabel(
     janela,
-    text="TECNOLOGIA QUE CONECTA",
+    text="Mais foco. Mais calma. Mais você.",
     font=("Arial", 16),
-    text_color="#00BFFF"
+    text_color="white"
 )
 subtitulo.pack(pady=5)
 
-frase = customtkinter.CTkLabel(
-    janela,
-    text="SOLUÇÕES",
-    font=("Arial", 15),
-    text_color="#CCCCCC"
+# Abas
+abas = customtkinter.CTkTabview(janela)
+abas.pack(padx=20, pady=20, fill="both", expand=True)
+
+inicio = abas.add("Início")
+rotina = abas.add("Rotina")
+tarefas = abas.add("Tarefas")
+relaxar = abas.add("Relaxar")
+
+# Tela inicial
+customtkinter.CTkLabel(
+    inicio,
+    text="Olá! Que bom ter você aqui! 💙",
+    font=("Arial", 22, "bold")
+).pack(pady=30)
+
+customtkinter.CTkLabel(
+    inicio,
+    text="Você consegue!\nUm passo de cada vez.",
+    font=("Arial", 18),
+    text_color="#00BFFF"
+).pack(pady=15)
+
+# Rotina
+customtkinter.CTkLabel(
+    rotina,
+    text="Minha rotina diária",
+    font=("Arial", 22, "bold")
+).pack(pady=20)
+
+customtkinter.CTkCheckBox(
+    rotina, text="Acordar"
+).pack(pady=10)
+
+customtkinter.CTkCheckBox(
+    rotina, text="Tomar café"
+).pack(pady=10)
+
+customtkinter.CTkCheckBox(
+    rotina, text="Estudar"
+).pack(pady=10)
+
+customtkinter.CTkCheckBox(
+    rotina, text="Fazer uma pausa"
+).pack(pady=10)
+
+# Tarefas
+customtkinter.CTkLabel(
+    tarefas,
+    text="Minhas tarefas",
+    font=("Arial", 22, "bold")
+).pack(pady=20)
+
+campo = customtkinter.CTkEntry(
+    tarefas,
+    placeholder_text="Digite uma tarefa"
 )
-frase.pack(pady=(0, 25))
+campo.pack(pady=10)
 
-conteudo = customtkinter.CTkLabel(
-    janela,
-    text="Bem-vindo à SE Sistemas!",
-    font=("Arial", 20, "bold"),
-    text_color="white"
-)
-conteudo.pack(pady=15)
+def adicionar():
+    texto = campo.get()
 
+    if texto != "":
+        customtkinter.CTkLabel(
+            lista,
+            text="• " + texto,
+            font=("Arial", 15)
+        ).pack(anchor="w", pady=5)
 
-def abrir_sistema():
-    conteudo.configure(
-        text="Sistema aberto! Bem-vindo ao painel da empresa."
-    )
+        campo.delete(0, "end")
 
+customtkinter.CTkButton(
+    tarefas,
+    text="Adicionar tarefa",
+    command=adicionar
+).pack(pady=10)
 
-def abrir_suporte():
-    conteudo.configure(
-        text="SUPORTE TÉCNICO. Entre em contato com nossa equipe."
-    )
+lista = customtkinter.CTkFrame(tarefas)
+lista.pack(fill="both", expand=True, padx=15, pady=10)
 
+# Relaxamento
+customtkinter.CTkLabel(
+    relaxar,
+    text="Respire e relaxe 🌿",
+    font=("Arial", 22, "bold")
+).pack(pady=30)
 
-def sobre_empresa():
-    conteudo.configure(
-        text="SE Sistemas. Tecnologia que conecta soluções."
-    )
+customtkinter.CTkLabel(
+    relaxar,
+    text="Inspire devagar...\nSolte o ar com calma.\nFaça tudo no seu ritmo.",
+    font=("Arial", 18),
+    text_color="#00BFFF"
+).pack(pady=20)
 
-
-botao_sistema = customtkinter.CTkButton(
-    janela,
-    text="ACESSAR SISTEMA",
-    width=280,
-    height=45,
-    fg_color="#007BFF",
-    hover_color="#0056B3",
-    font=("Arial", 15, "bold"),
-    command=abrir_sistema
-)
-botao_sistema.pack(pady=10)
-
-botao_suporte = customtkinter.CTkButton(
-    janela,
-    text="SUPORTE TÉCNICO",
-    width=280,
-    height=45,
-    fg_color="#111D30",
-    hover_color="#173B65",
-    border_width=2,
-    border_color="#00BFFF",
-    font=("Arial", 15, "bold"),
-    command=abrir_suporte
-)
-botao_suporte.pack(pady=10)
-
-botao_sobre = customtkinter.CTkButton(
-    janela,
-    text="SOBRE A EMPRESA",
-    width=280,
-    height=45,
-    fg_color="#111D30",
-    hover_color="#173B65",
-    border_width=2,
-    border_color="#00BFFF",
-    font=("Arial", 15, "bold"),
-    command=sobre_empresa
-)
-botao_sobre.pack(pady=10)
-
-rodape = customtkinter.CTkLabel(
-    janela,
-    text="© SE Sistemas e Tecnologia",
-    font=("Arial", 12),
-    text_color="#777777"
-)
-rodape.pack(side="bottom", pady=15)
+customtkinter.CTkButton(
+    relaxar,
+    text="Estou pronto!",
+    command=lambda: customtkinter.CTkLabel(
+        relaxar,
+        text="Muito bem! Continue no seu ritmo 💙"
+    ).pack(pady=10)
+).pack(pady=10)
 
 janela.mainloop()
